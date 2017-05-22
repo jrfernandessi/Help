@@ -1,0 +1,13 @@
+/*css normal usado na página*/
+.div{
+	width: 800px;
+	height: 50px;
+	background-color: red;
+}
+/*o max-width diz onde deve ser aplicado o novo css baseado no tamanho da gtela*/
+@media(max-width: 960px){
+	/*basta colocar apenas o que voce quer que mude*/
+	.div{
+		background-color: green;
+	}
+}
