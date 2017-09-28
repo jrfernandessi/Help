@@ -6,6 +6,7 @@
 package com.eeep.gui;
 
 import com.eeep.controle.FilmeControle;
+import com.eeep.excecoes.AdicionarException;
 import com.eeep.model.Filme;
 import javax.swing.JOptionPane;
 
@@ -130,10 +131,14 @@ public class CadastrarFilme extends javax.swing.JFrame {
         filme.setCodigo(codigo);
         filme.setNome(nome);
         FilmeControle controle = new FilmeControle();
-        controle.salvarFilme(filme);
-        JOptionPane.showMessageDialog(this, "Filme Cadastrado com Sucesso!");
-        this.dispose();
-        new Menu().setVisible(true);
+        try {
+            controle.salvarFilme(filme);
+            JOptionPane.showMessageDialog(this, "Filme Cadastrado com Sucesso!");
+            this.dispose();
+            new Menu().setVisible(true);
+        } catch (AdicionarException e) {
+            JOptionPane.showMessageDialog(this, e.getMessage(), "ERRO", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnCadastroActionPerformed
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed

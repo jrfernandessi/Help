@@ -9,6 +9,7 @@ import com.eeep.model.Filme;
 import com.eeep.util.ConnectionFactory;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
@@ -42,5 +43,41 @@ public class FilmeDAO {
                 e.printStackTrace();
             }
         }
+    }
+    public Filme buscarPorCodigo(int codigo){
+        String sql = "select * from filme where codigo_filme=?";
+        Connection conn = null;
+        PreparedStatement pstm = null;
+        ResultSet rset = null;
+        Filme filme = null;
+        try{
+            conn = ConnectionFactory.getConnection();
+            pstm = conn.prepareStatement(sql);
+            pstm.setInt(1, codigo);
+            rset = pstm.executeQuery();
+            while(rset.next()){
+                filme = new Filme();
+                filme.setCodigo(rset.getInt("codigo_filme"));
+                filme.setNome(rset.getString("nome_filme"));
+                
+            }
+        }catch(SQLException e){
+            e.printStackTrace();
+        }finally{
+            try{
+                if(rset!=null){
+                    rset.close();
+                }
+                if(pstm!=null){
+                    pstm.close();
+                }
+                if(conn!=null){
+                    conn.close();
+                }
+            }catch(SQLException e){
+                e.printStackTrace();
+            }
+        }
+        return filme;
     }
 }
