@@ -9,6 +9,7 @@ import com.eeep.dao.FilmeDAO;
 import com.eeep.excecoes.AdicionarException;
 import com.eeep.excecoes.BuscaException;
 import com.eeep.model.Filme;
+import java.util.ArrayList;
 
 /**
  *
@@ -31,6 +32,14 @@ public class FilmeControle {
             return filme;
         }else{
             throw new BuscaException("Filme não encontrado.");
+        }
+    }
+    public ArrayList<Filme> buscarPorNome(String nome) throws BuscaException{
+        ArrayList<Filme> filmes = dao.buscarPorNome(nome);
+        if(filmes.size()!=0){
+            return filmes;
+        }else{
+            throw new BuscaException("Filme não encontrado");
         }
     }
 }
