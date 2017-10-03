@@ -9,16 +9,16 @@ package com.eeep.model;
  *
  * @author Junior
  */
-public class Filme {
-    private int codigo;
+public class Pessoa {
+    private String cpf;
     private String nome;
 
-    public int getCodigo() {
-        return codigo;
+    public String getCpf() {
+        return cpf;
     }
 
-    public void setCodigo(int codigo) {
-        this.codigo = codigo;
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
 
     public String getNome() {
