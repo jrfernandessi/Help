@@ -118,4 +118,40 @@ public class FilmeDAO {
         }
         return filmes;
     }
+    
+    public ArrayList<Filme> listar(){
+        String sql = "select * from filme";
+        Connection conn = null;
+        PreparedStatement pstm = null;
+        ResultSet rset = null;
+        ArrayList<Filme> filmes = new ArrayList<Filme>();
+        try{
+            conn = ConnectionFactory.getConnection();
+            pstm = conn.prepareStatement(sql);
+            rset = pstm.executeQuery();
+            while(rset.next()){
+                Filme filme = new Filme();
+                filme.setCodigo(rset.getInt("codigo_filme"));
+                filme.setNome(rset.getString("nome_filme"));
+                filmes.add(filme);
+            }
+        }catch(SQLException e){
+            e.printStackTrace();
+        }finally{
+            try{
+                if(rset != null){
+                    rset.close();
+                }
+                if(pstm != null){
+                    pstm.close();
+                }
+                if(conn != null){
+                    conn.close();
+                }
+            }catch(SQLException e){
+                e.printStackTrace();
+            }
+        }
+        return filmes;
+    }
 }

@@ -42,4 +42,7 @@ public class FilmeControle {
             throw new BuscaException("Filme não encontrado");
         }
     }
+    public ArrayList<Filme> listar(){
+        return dao.listar();
+    }
 }

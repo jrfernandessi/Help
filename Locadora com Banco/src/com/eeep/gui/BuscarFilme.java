@@ -24,6 +24,7 @@ public class BuscarFilme extends javax.swing.JFrame {
      */
     public BuscarFilme() {
         initComponents();
+        listar();
     }
 
     /**
@@ -208,9 +209,22 @@ public class BuscarFilme extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new BuscarFilme().setVisible(true);
+                
             }
         });
     }
+    
+   public void listar(){
+       DefaultTableModel model = null;
+       FilmeControle controle = new FilmeControle();
+       ArrayList<Filme> filmes = controle.listar();
+       model = (DefaultTableModel) tabelaResultado.getModel();
+       for(Filme filme: filmes){
+           model.addRow(new Object[]{
+               filme.getCodigo(), filme.getNome()
+           });
+       }
+   }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField campoBusca;
