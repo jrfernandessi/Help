@@ -45,4 +45,9 @@ public class FilmeControle {
     public ArrayList<Filme> listar(){
         return dao.listar();
     }
+    
+    public void deletarFilmePorCodigo(int codigo) throws BuscaException{
+        this.buscarPorCodigo(codigo);
+        dao.deletarFilmePorCodigo(codigo);
+    }
 }

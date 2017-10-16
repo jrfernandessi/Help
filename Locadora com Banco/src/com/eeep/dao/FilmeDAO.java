@@ -154,4 +154,29 @@ public class FilmeDAO {
         }
         return filmes;
     }
+    
+    public void deletarFilmePorCodigo(int codigo){
+        String sql = "delete from filme where codigo_filme=?";
+        Connection conn = null;
+        PreparedStatement pstm = null;
+        try{
+            conn = ConnectionFactory.getConnection();
+            pstm = conn.prepareStatement(sql);
+            pstm.setInt(1, codigo);
+            pstm.execute();
+        }catch(SQLException e){
+            e.printStackTrace();
+        }finally{
+            try{
+                if(pstm!=null){
+                    pstm.close();
+                }
+                if(conn!=null){
+                    conn.close();
+                }
+            }catch(SQLException e){
+                e.printStackTrace();
+            }
+        }
+    }
 }
