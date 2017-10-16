@@ -25,6 +25,7 @@ public class BuscarPessoa extends javax.swing.JFrame {
      */
     public BuscarPessoa() {
         initComponents();
+        listar();
     }
 
     /**
@@ -134,17 +135,17 @@ public class BuscarPessoa extends javax.swing.JFrame {
         String cpf = campoBusca.getText();
         DefaultTableModel modelo = null;
         PessoaControle controle = new PessoaControle();
-        try{
-            
+        try {
+
             Pessoa pessoa = controle.buscarPorCpf(cpf);
             modelo = (DefaultTableModel) tabelaResultado.getModel();
-            while(modelo.getRowCount()>0){
+            while (modelo.getRowCount() > 0) {
                 modelo.removeRow(0);
             }
             modelo.addRow(new Object[]{
                 pessoa.getCpf(), pessoa.getNome()
             });
-        }catch(BuscaException e){
+        } catch (BuscaException e) {
             JOptionPane.showMessageDialog(this, e.getMessage(), "ERRO", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -159,23 +160,35 @@ public class BuscarPessoa extends javax.swing.JFrame {
         // TODO add your handling code here:
         PessoaControle controle = new PessoaControle();
         String nome = campoBusca.getText();
-        
+
         DefaultTableModel modelo = null;
-        try{
+        try {
             modelo = (DefaultTableModel) tabelaResultado.getModel();
             ArrayList<Pessoa> pessoas = controle.buscarPorNome(nome);
-            while(modelo.getRowCount()>0){
+            while (modelo.getRowCount() > 0) {
                 modelo.removeRow(0);
             }
-            for(Pessoa pessoa: pessoas){
+            for (Pessoa pessoa : pessoas) {
                 modelo.addRow(new Object[]{
                     pessoa.getCpf(), pessoa.getNome()
                 });
             }
-        }catch(BuscaException e){
+        } catch (BuscaException e) {
             JOptionPane.showMessageDialog(this, e.getMessage(), "ERRO", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    public void listar() {
+        DefaultTableModel model = null;
+        PessoaControle controle = new PessoaControle();
+        ArrayList<Pessoa> pessoas = controle.listar();
+        model = (DefaultTableModel) tabelaResultado.getModel();
+        for (Pessoa pessoa : pessoas) {
+            model.addRow(new Object[]{
+                pessoa.getCpf(), pessoa.getNome()
+            });
+        }
+    }
 
     /**
      * @param args the command line arguments

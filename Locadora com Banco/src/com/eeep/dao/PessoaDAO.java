@@ -120,4 +120,65 @@ public class PessoaDAO {
         return pessoas;
     }
     
+    public ArrayList<Pessoa> listar(){
+        String sql = "select * from pessoa";
+        Connection conn = null;
+        PreparedStatement pstm = null;
+        ResultSet rset = null;
+        ArrayList<Pessoa> pessoas = new ArrayList<>();
+        try{
+            conn = ConnectionFactory.getConnection();
+            pstm = conn.prepareStatement(sql);
+            rset = pstm.executeQuery();
+            while(rset.next()){
+                Pessoa pessoa = new Pessoa();
+                pessoa.setCpf(rset.getString("cpf_pessoa"));
+                pessoa.setNome(rset.getString("nome_pessoa"));
+                pessoas.add(pessoa);
+            }
+        }catch(SQLException e){
+            e.printStackTrace();
+        }finally{
+            try{
+                if(rset!=null){
+                    rset.close();
+                }
+                if(pstm!=null){
+                    pstm.close();
+                }
+                if(conn!=null){
+                    conn.close();
+                }
+            }catch(SQLException e){
+                e.printStackTrace();
+            }
+        }
+        return pessoas;
+    }
+    
+    public void deletarPessoaPorCpf(String cpf){
+        String sql = "delete from pessoa where cpf_pessoa=?";
+        Connection conn = null;
+        PreparedStatement pstm = null;
+        try{
+            conn = ConnectionFactory.getConnection();
+            pstm = conn.prepareStatement(sql);
+            pstm.setString(1, cpf);
+            pstm.execute();
+        }catch(SQLException e){
+            e.printStackTrace();
+        }finally{
+            try{
+                if(pstm!=null){
+                    pstm.close();
+                }
+                if(conn!=null){
+                    conn.close();
+                }
+            }catch(SQLException e){
+                e.printStackTrace();
+            }
+        }
+    }
+    
 }

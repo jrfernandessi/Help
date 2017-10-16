@@ -46,4 +46,15 @@ public class PessoaControle {
             throw new BuscaException("Nenhuma pessoa encontrada");
         }
     }
+    
+    public ArrayList<Pessoa> listar(){
+        return dao.listar();
+    }
+    
+    public void deletetarPessoaPorCpf(String cpf)throws BuscaException{
+        this.buscarPorCpf(cpf);
+        dao.deletarPessoaPorCpf(cpf);
+    }
+    
+    
 }
