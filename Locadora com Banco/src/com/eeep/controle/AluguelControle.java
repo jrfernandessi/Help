@@ -8,6 +8,7 @@ package com.eeep.controle;
 import com.eeep.dao.AluguelDAO;
 import com.eeep.excecoes.BuscaException;
 import com.eeep.model.Aluguel;
+import java.util.ArrayList;
 
 /**
  *
@@ -22,5 +23,13 @@ public class AluguelControle {
         filmeControle.buscarPorCodigo(aluguel.getFilme().getCodigo());
         pessoaControle.buscarPorCpf(aluguel.getPessoa().getCpf());
         dao.salvarAluguel(aluguel);
+    }
+    
+    public ArrayList<Aluguel> buscar(String campo){
+        return dao.buscar(campo);
+    }
+    
+    public ArrayList<Aluguel> listar(){
+        return dao.listar();
     }
 }
