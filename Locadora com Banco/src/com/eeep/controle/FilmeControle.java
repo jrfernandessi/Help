@@ -50,4 +50,9 @@ public class FilmeControle {
         this.buscarPorCodigo(codigo);
         dao.deletarFilmePorCodigo(codigo);
     }
+    
+    public void atualizarNomePorCodigo(int codigo, String nome) throws BuscaException{
+        this.buscarPorCodigo(codigo);
+        dao.atualizarNomePorCodigo(codigo, nome);
+    }
 }

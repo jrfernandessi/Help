@@ -179,4 +179,30 @@ public class FilmeDAO {
             }
         }
     }
+    
+    public void atualizarNomePorCodigo(int codigo, String nome){
+        String sql = "update filme set nome_filme=? where codigo_filme=?";
+        Connection conn = null;
+        PreparedStatement pstm = null;
+        try{
+            conn = ConnectionFactory.getConnection();
+            pstm = conn.prepareStatement(sql);
+            pstm.setString(1, nome);
+            pstm.setInt(2, codigo);
+            pstm.execute();
+        }catch(SQLException e){
+            e.printStackTrace();
+        }finally{
+            try{
+                if(pstm!=null){
+                    pstm.close();
+                }
+                if(conn!=null){
+                    conn.close();
+                }
+            }catch(SQLException e){
+                e.printStackTrace();
+            }
+        }
+    }
 }
