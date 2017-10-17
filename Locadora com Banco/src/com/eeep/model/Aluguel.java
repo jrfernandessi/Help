@@ -14,8 +14,8 @@ import java.util.Date;
 public class Aluguel {
     private Filme filme;
     private Pessoa pessoa;
-    private Date aluguel;
-    private Date devolucao;
+    private Date dataAluguel;
+    private Date dataDevolucao;
 
     public Filme getFilme() {
         return filme;
@@ -33,21 +33,23 @@ public class Aluguel {
         this.pessoa = pessoa;
     }
 
-    public Date getAluguel() {
-        return aluguel;
+    public Date getDataAluguel() {
+        return dataAluguel;
     }
 
-    public void setAluguel(Date aluguel) {
-        this.aluguel = aluguel;
+    public void setDataAluguel(Date dataAluguel) {
+        this.dataAluguel = dataAluguel;
     }
 
-    public Date getDevolucao() {
-        return devolucao;
+    public Date getDataDevolucao() {
+        return dataDevolucao;
     }
 
-    public void setDevolucao(Date devolucao) {
-        this.devolucao = devolucao;
+    public void setDataDevolucao(Date dataDevolucao) {
+        this.dataDevolucao = dataDevolucao;
     }
+
+    
     
     
 }
