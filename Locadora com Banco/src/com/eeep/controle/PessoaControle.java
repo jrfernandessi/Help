@@ -56,5 +56,10 @@ public class PessoaControle {
         dao.deletarPessoaPorCpf(cpf);
     }
     
+    public void atualizarNomePorCpf(String nome, String cpf)throws BuscaException{
+        this.buscarPorCpf(cpf);
+        dao.atualizarNomePorCpf(nome, cpf);
+    }
+    
     
 }

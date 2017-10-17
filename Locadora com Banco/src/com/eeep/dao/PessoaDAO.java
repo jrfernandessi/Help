@@ -181,4 +181,30 @@ public class PessoaDAO {
         }
     }
     
+    public void atualizarNomePorCpf(String nome, String cpf){
+        String sql = "update pessoa set nome_pessoa=? where cpf_pessoa=?";
+        Connection conn = null;
+        PreparedStatement pstm = null;
+        try{
+            conn = ConnectionFactory.getConnection();
+            pstm = conn.prepareStatement(sql);
+            pstm.setString(1, nome);
+            pstm.setString(2, cpf);
+            pstm.execute();
+        }catch(SQLException e){
+            e.printStackTrace();
+        }finally{
+            try{
+                if(pstm!=null){
+                    pstm.close();
+                }
+                if(conn!=null){
+                    conn.close();
+                }
+            }catch(SQLException e){
+                e.printStackTrace();
+            }
+        }
+    }
+    
 }
