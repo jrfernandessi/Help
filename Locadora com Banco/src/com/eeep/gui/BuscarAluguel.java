@@ -10,6 +10,7 @@ import com.eeep.controle.FilmeControle;
 import com.eeep.model.Aluguel;
 import com.eeep.model.Filme;
 import java.util.ArrayList;
+import java.util.Date;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -118,9 +119,43 @@ public class BuscarAluguel extends javax.swing.JFrame {
             model.removeRow(0);
         }
         for (Aluguel aluguel : alugueis) {
+            Date dataAluguel = aluguel.getDataAluguel();
+            Date dataDevolucao = aluguel.getDataDevolucao();
+            String diaA;
+            String mesA;
+            String anoA;
+            if(dataAluguel.getDate()<10){
+                diaA = "0"+dataAluguel.getDate();
+            }else{
+                diaA = ""+dataAluguel.getDate();
+            }
+            if(dataAluguel.getMonth()<9){
+                mesA = "0"+(dataAluguel.getMonth()+1);
+            }else{
+                mesA = ""+(dataAluguel.getMonth()+1);
+            }
+            anoA = ""+(dataAluguel.getYear()+1900);
+            String aluguelFormatado = diaA+"/"+mesA+"/"+anoA;
+            
+            String diaD;
+            String mesD;
+            String anoD;
+            if(dataDevolucao.getDate()<10){
+                diaD = "0"+dataDevolucao.getDate();
+            }else{
+                diaD = ""+dataDevolucao.getDate();
+            }
+            if(dataDevolucao.getMonth()<9){
+                mesD = "0"+(dataDevolucao.getMonth()+1);
+            }else{
+                mesD = ""+(dataDevolucao.getMonth()+1);
+            }
+            anoD = ""+(dataDevolucao.getYear()+1900);
+            String devolucaoFormatado = diaD+"/"+mesD+"/"+anoD;
+ 
             model.addRow(new Object[]{
                 aluguel.getPessoa().getNome(), aluguel.getFilme().getNome(),
-                aluguel.getDataAluguel(), aluguel.getDataDevolucao()
+                aluguelFormatado, devolucaoFormatado
             });
         }
     }//GEN-LAST:event_campoBuscaKeyReleased
@@ -131,9 +166,43 @@ public class BuscarAluguel extends javax.swing.JFrame {
         ArrayList<Aluguel> alugueis = controle.listar();
         model = (DefaultTableModel) tabelaResultado.getModel();
         for (Aluguel aluguel : alugueis) {
+            Date dataAluguel = aluguel.getDataAluguel();
+            Date dataDevolucao = aluguel.getDataDevolucao();
+            String diaA;
+            String mesA;
+            String anoA;
+            if(dataAluguel.getDate()<10){
+                diaA = "0"+dataAluguel.getDate();
+            }else{
+                diaA = ""+dataAluguel.getDate();
+            }
+            if(dataAluguel.getMonth()<9){
+                mesA = "0"+(dataAluguel.getMonth()+1);
+            }else{
+                mesA = ""+(dataAluguel.getMonth()+1);
+            }
+            anoA = ""+(dataAluguel.getYear()+1900);
+            String aluguelFormatado = diaA+"/"+mesA+"/"+anoA;
+            
+            String diaD;
+            String mesD;
+            String anoD;
+            if(dataDevolucao.getDate()<10){
+                diaD = "0"+dataDevolucao.getDate();
+            }else{
+                diaD = ""+dataDevolucao.getDate();
+            }
+            if(dataDevolucao.getMonth()<9){
+                mesD = "0"+(dataDevolucao.getMonth()+1);
+            }else{
+                mesD = ""+(dataDevolucao.getMonth()+1);
+            }
+            anoD = ""+(dataDevolucao.getYear()+1900);
+            String devolucaoFormatado = diaD+"/"+mesD+"/"+anoD;
+ 
             model.addRow(new Object[]{
                 aluguel.getPessoa().getNome(), aluguel.getFilme().getNome(),
-                aluguel.getDataAluguel(), aluguel.getDataDevolucao()
+                aluguelFormatado, devolucaoFormatado
             });
         }
     }

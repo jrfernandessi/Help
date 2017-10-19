@@ -61,8 +61,8 @@ public class AluguelDAO {
         try{
             conn = ConnectionFactory.getConnection();
             pstm = conn.prepareStatement(sql);
-            pstm.setString(1, "%"+campo+"%");
-            pstm.setString(2, "%"+campo+"%");
+            pstm.setString(1, campo+"%");
+            pstm.setString(2, campo+"%");
             rset = pstm.executeQuery();
             while(rset.next()){
                 Pessoa pessoa = new Pessoa();
